@@ -1,5 +1,5 @@
 instance_type = "${instance_type}"
-ami = ${ami}
+ami = "${ami}"
 key_pair_name = "${key_pair_name}"
 server_name = "${server_name}"
 
