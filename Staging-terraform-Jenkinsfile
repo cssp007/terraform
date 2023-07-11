@@ -3,7 +3,10 @@ pipeline {
   stages {
     stage('Update tfvars file') {
       steps {
+        sh 'pwd'
         sh 'cd staging/services/ec2/'
+        sh 'pwd'
+        sh 'ls -lh'
         sh 'sed -i "s/update_instance_type/${instance_type}/g" terraform.tfvars'
         sh 'sed -i "s/update_ami/${ami}/g" terraform.tfvars'
         sh 'sed -i "s/update_key_pair_name/${key_pair_name}/g" terraform.tfvars'
