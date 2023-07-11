@@ -4,7 +4,7 @@ pipeline {
     stage('Update tfvars file') {
       steps {
         sh 'sed -i "s/update_instance_type/${instance_type}/g" staging/services/ec2/terraform.tfvars'
-        sh 'sed -i "s/update_ami/${ami}/g" terraform.tfvars'
+        sh 'sed -i "s/update_ami/${ami}/g" staging/services/ec2/terraform.tfvars'
         sh 'sed -i "s/update_key_pair_name/${key_pair_name}/g" staging/services/ec2/terraform.tfvars'
         sh 'sed -i "s/update_server_name/${server_name}/g" staging/services/ec2/terraform.tfvars'
         sh 'sed -i "s/update_root_disk_volume_type/${root_disk_volume_type}/g" staging/services/ec2/terraform.tfvars'
