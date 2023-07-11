@@ -1,5 +1,5 @@
 instance_type = ["t2.micro", "t3.micro"]
-ami = []
+ami = ["ami-0f5ee92e2d63afc18", "ami-08e5424edfe926b43"]
 key_pair_name = ["abc.pem", "xyz.pem"]
 server_name = ["server-one", "server-two"]
 
