@@ -4,6 +4,7 @@ pipeline {
     stage('Update tfvars file') {
       steps {
         sh 'pwd'
+        sh 'ls -lh'
         sh 'cd staging/services/ec2/'
         sh 'pwd'
         sh 'ls -lh'
