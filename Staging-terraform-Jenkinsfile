@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stege('Update tfvars file') {
+    stage('Update tfvars file') {
       steps {
         sh 'cd staging/services/ec2/'
         sh 'sed -i "s/update_instance_type/${instance_type}/g" terraform.tfvars'
