@@ -9,8 +9,8 @@ terraform {
 
 provider "aws" {
   region = "ap-south-1" # Staging region
-  access_key = "AAKKIA4IZTCHQPSHNIEPV78"
-  secret_key = "omnsSvKKbXWFOhzixNsS1LC/sQtlHmbRWeCLpnGXiI"
+  access_key = ""
+  secret_key = ""
 
 }
 
