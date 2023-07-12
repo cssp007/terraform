@@ -1,30 +1,18 @@
-resource "aws_instance" "ec2" {
-  count = length(var.server_name)
-  ami           = var.ami[count.index]
-  instance_type = var.instance_type[count.index]
-  key_name = var.key_pair_name[count.index]
-  root_block_device {
-    volume_type           = var.root_disk_volume_type[count.index]     # Specify the volume type (e.g., gp2, io1, st1, sc1)
-    volume_size           = var.root_disk_volume_size[count.index]        # Specify the root volume size in GB
-    delete_on_termination = var.root_disk_delete_on_termination[count.index]      # Delete the volume when the instance is terminated
-    encrypted             = var.root_disk_encrypted[count.index]      # Enable encryption for the volume (optional)
-  }
-  # Conditionally create an extra EBS volume
-  lifecycle {
-    create_before_destroy = false
-  }
+locals {
+  lambda_zip_locations = "outputs/welcome.zip"
+}
 
-  dynamic "ebs_block_device" {
-    for_each = var.add_extra_volume ? [1] : []
-    content {
-      device_name = var.add_extra_volume_device_name[count.index]
-      volume_type = var.add_extra_volume_volume_type[count.index]
-      volume_size = var.add_extra_volume_volume_size[count.index]
-      delete_on_termination = var.add_extra_volume_delete_on_termination[count.index]
-    }
-  }
+data "archive_file" "welcome" {
+  type        = "zip"
+  source_file = "welcome.py"
+  output_path = "${local.lambda_zip_locations}"
+}
 
-  tags = {
-    Name = var.server_name[count.index]
-  }
+resource "aws_lambda_function" "lambda" {
+  function_name = "welcome"
+  filename         = "${local.lambda_zip_locations}"
+  #source_code_hash = data.archive_file.zip.output_base64sha256
+  role    = aws_iam_role.lambda_role.arn
+  handler = "welcome.hello"
+  runtime = "python3.7"
 }
