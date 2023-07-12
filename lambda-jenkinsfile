@@ -1,0 +1,15 @@
+pipeline {
+  agent any
+  stages {
+    stage('Terraform init') {
+      steps {
+        sh 'cd staging/services/lambda/ && terraform init'
+      }
+    }
+    stage('Terraform plan') {
+      steps {
+        sh 'cd staging/services/lambda/ && terraform plan'
+      }
+    }  
+  }
+}
