@@ -1,5 +1,5 @@
 locals {
-  lambda_zip_locations = "outputs/welcome.zip"
+  lambda_zip_locations = "$lambda_zip_locations"
 }
 
 data "archive_file" "welcome" {
