@@ -4,6 +4,7 @@ pipeline {
     stage('Terraform init') {
       steps {
         sh 'cd staging/services/lambda/ && terraform init'
+        sh 'echo "$lambda_zip_locations"'
       }
     }
     stage('Terraform plan') {
