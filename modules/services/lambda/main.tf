@@ -4,7 +4,7 @@ locals {
 
 data "archive_file" "welcome" {
   type        = "zip"
-  source_file = "welcome.py"
+  source_file = "${path.module}/welcome.py"
   output_path = "${local.lambda_zip_locations}"
 }
 
