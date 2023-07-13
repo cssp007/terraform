@@ -4,7 +4,7 @@
 
 data "archive_file" "welcome" {
   type        = "zip"
-  source_file = "${path.module}/welcome.py"
+  source_file = "${path.module}/$source_file_path"
   output_path = "$lambda_zip_locations"
 }
 
