@@ -11,7 +11,7 @@ data "archive_file" "welcome" {
 resource "aws_lambda_function" "lambda" {
   function_name = "welcome"
   filename         = "${local.lambda_zip_locations}"
-  #source_code_hash = data.archive_file.zip.output_base64sha256
+  source_code_hash = "${filebase64sha256(local.lambda_zip_locations)}"
   role    = aws_iam_role.lambda_role.arn
   handler = "welcome.hello"
   runtime = "python3.7"
