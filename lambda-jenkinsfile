@@ -11,7 +11,7 @@ pipeline {
         sh 'cd staging/services/lambda/ && terraform plan'
       }
     }  
-    stage('Terraform plan') {
+    stage('Terraform apply') {
       steps {
         sh 'cd staging/services/lambda/ && terraform apply -auto-approve'
       }
