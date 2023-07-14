@@ -1,0 +1,4 @@
+lambda_zip_locations
+source_file_path
+function_name
+handler_name
