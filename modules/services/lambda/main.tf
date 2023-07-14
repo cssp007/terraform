@@ -14,5 +14,5 @@ resource "aws_lambda_function" "lambda" {
   source_code_hash = filebase64sha256(var.lambda_zip_locations)
   role    = aws_iam_role.lambda_role.arn
   handler = "${var.function_name}.${var.handler_name}"
-  runtime = var.runtime
+  runtime = "python3.9"
 }
