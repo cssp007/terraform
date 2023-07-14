@@ -4,15 +4,15 @@
 
 data "archive_file" "welcome" {
   type        = "zip"
-  source_file = "${path.module}/$source_file_path"
-  output_path = "$lambda_zip_locations"
+  source_file = "${path.module}/welcome.py"
+  output_path = var.lambda_zip_locations
 }
 
 resource "aws_lambda_function" "lambda" {
-  function_name = "welcome"
-  filename         = "$lambda_zip_locations"
-  #source_code_hash = filebase64sha256("$lambda_zip_locations")
+  function_name = var.function_name
+  filename         = var.lambda_zip_locations
+  #source_code_hash = filebase64sha256(var.lambda_zip_locations)
   role    = aws_iam_role.lambda_role.arn
-  handler = "welcome.hello"
+  handler = var.function_name.var.handler_name
   runtime = "python3.7"
 }
