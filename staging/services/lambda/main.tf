@@ -17,4 +17,5 @@ module "lambda" {
   source_file_path = var.source_file_path
   function_name = var.function_name
   handler_name = var.handler_name
+  runtime = var.runtime
 }
