@@ -11,8 +11,8 @@ data "archive_file" "welcome" {
 resource "aws_lambda_function" "lambda" {
   function_name = var.function_name
   filename         = var.lambda_zip_locations
-  #source_code_hash = filebase64sha256(var.lambda_zip_locations)
+  source_code_hash = filebase64sha256(var.lambda_zip_locations)
   role    = aws_iam_role.lambda_role.arn
   handler = "${var.function_name}.${var.handler_name}"
-  runtime = "python3.9"
+  runtime = var.runtime
 }
