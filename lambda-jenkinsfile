@@ -1,6 +1,14 @@
 pipeline {
   agent any
   stages {
+    stage('Update tfvars file') {
+      steps {
+        sh 'sed -i "s/update_lambda_zip_locations/${lambda_zip_locations}/g" staging/services/lambda/terraform.tfvars'
+        sh 'sed -i "s/update_source_file_path/${source_file_path}/g" staging/services/lambda/terraform.tfvars'
+        sh 'sed -i "s/update_function_name/${function_name}/g" staging/services/lambda/terraform.tfvars'
+        sh 'sed -i "s/update_handler_name/${handler_name}/g" staging/services/lambda/terraform.tfvars'
+      }
+    }
     stage('Terraform init') {
       steps {
         sh 'cd staging/services/lambda/ && terraform init'
