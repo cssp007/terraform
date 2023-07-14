@@ -13,3 +13,7 @@ variable "function_name" {
 variable "handler_name" {
   type = string
 }
+
+variable "runtime" {
+  type = string
+}
