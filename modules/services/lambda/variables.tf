@@ -1,19 +1,19 @@
 variable "lambda_zip_locations" {
-  type = string
+  type = list(string)
 }
 
 variable "source_file_path" {
-  type = string
+  type = list(string)
 }
 
 variable "function_name" {
-  type = string
+  type = list(string)
 }
 
 variable "handler_name" {
-  type = string
+  type = list(string)
 }
 
 variable "runtime" {
-  type = string
+  type = list(string)
 }
